@@ -12,12 +12,15 @@ class Todolist extends React.Component
     super(props);
     this.state =
     {
+
       valueoftextbox:'M',
+      //making an object of the list in order to call a spesific function in the list class
       obj : new List(),
-       count :"A7la To Do List Fi El Donia "
+      //dah variable 3adi bs bagarab el state :)
+      count :"A7la To Do List Fi El Donia "
     }
   }
-    
+   //here i render the textbox and the add button  
   render()
   {
     return(

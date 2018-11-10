@@ -15,12 +15,16 @@ class List extends React.Component{
         this.Dlt = this.Dlt.bind(this);
         this.Edt = this.Edt.bind(this);
     }
+    //el function di bttnafez ba3d el render
    componentDidMount() {
        //setInterval(this.newnode, 5000);
         // store intervalId in the state so it can be accessed later:
         
      }
+     // de function el delete eli btms7 el node eli heya feha
      Dlt=(e)=>{
+         //el mafrod en array.splice btmsa7 element fee el array mo3ayan b el index bta3o
+         // el index el mafrod y2l b wa7ed *i'm supposing*
          this.setState((prevState)=> { 
              return{
                  
@@ -30,6 +34,7 @@ class List extends React.Component{
             }
         })
      }
+     //to edit the node
      Edt=(e)=>{
         
         this.setState((prevState)=> { 
@@ -45,8 +50,10 @@ class List extends React.Component{
 
         
     }
+    //i am creating a new node to append it to the to do list
     newnode=(e)=>{    
-            
+            //i retuen the array of nodes + a new node in it 
+            // a node consisit of 2 buttons and a paragraph inside a div
         this.setState((prevState)=> { 
             return{
                 index : prevState.index +1  ,
@@ -61,6 +68,7 @@ class List extends React.Component{
         // document.getElementById('textbox').nodeValue="";
         //e.preventDefault();
     }
+    //i am rendering the array which contain all the nodes
     render(){
         return(
             <div>
