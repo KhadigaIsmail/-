@@ -1,6 +1,6 @@
-button {
+.dotolisthead button {
    
-    background-color: #4CAF50;
+    background-color: black;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -8,17 +8,39 @@ button {
     border-radius: 4px;
     cursor: pointer;
 }
-
-input[type=text], select {
-    width: 90%;
+body
+{
+    background-image: url(colerd.jpg);
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    
+}
+.dotolisthead
+{
+    background-color: black;
+   border-radius: 30px;
+    opacity: 0.9;
+    position: absolute;
+   transform: translate(-50%,-50%);
+   width : 90%;
+   padding: 12px 20px;
+   top: 15%;
+   left: 50%;
+}
+.dotolisthead input[type=text], select {
+    width: 80%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-}
-h1{
-    background-color: aliceblue
 
+    
+}
+.dotolisthead h1{
+    background-color: transparent;
+    color: coral;
+    text-align: center;
 }
