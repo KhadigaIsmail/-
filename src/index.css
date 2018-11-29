@@ -1,4 +1,4 @@
-.dotolisthead button {
+.toDoListHead button {
    
     background-color: black;
     color: white;
@@ -16,9 +16,10 @@ body
     background-size: cover;
     
 }
-.dotolisthead
+.toDoListHead 
 {
     background-color: black;
+    color: #ccc;
    border-radius: 30px;
     opacity: 0.9;
     position: absolute;
@@ -28,7 +29,7 @@ body
    top: 15%;
    left: 50%;
 }
-.dotolisthead input[type=text], select {
+.toDoListHead input[type=text], select {
     width: 80%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -39,8 +40,14 @@ body
 
     
 }
-.dotolisthead h1{
+.toDoListHead h1{
     background-color: transparent;
     color: coral;
     text-align: center;
+}
+.listItems
+{
+    position: relative;
+    top:20%;
+
 }

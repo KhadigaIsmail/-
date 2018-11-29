@@ -1,112 +1,90 @@
 import React from 'react';
 import './index.css';
-
 //import ReactDOM from 'react-dom';
 //import * as serviceWorker from './serviceWorker';
+
+  
+
 class Todolist extends React.Component
 {
 
-  constructor(props)
-  {
-    super(props);
-    this.state =
-    {
-
-      valueoftextbox:'M',
-      //making an object of the list in order to call a spesific function in the list class
-      obj : new List(),
-      //dah variable 3adi bs bagarab el state :)
-      count :"A7la To Do List Fi El Donia "
-    }
-  }
-   //here i render the textbox and the add button  
-  render()
-  {
-    return(
-      <div class="dotolisthead">
-        <h1>{this.state.count}</h1>
-        <input type="text" id = "textbox"></input>
-        <button onClick={this.state.obj.newnode}>Add</button>
-        <List />
-      </div>
-    );
-  }
-}
-
-class List extends React.Component{
-
-    constructor(){
+   constructor(props){
         super();
         this.state={
-            nodes: [],
-            index : -1
-         }
-         this.newnode = this.newnode.bind(this);
-        addnewnode : this.newnode();
-        this.Dlt = this.Dlt.bind(this);
-        this.Edt = this.Edt.bind(this);
-    }
-    //el function di bttnafez ba3d el render
-   componentDidMount() {
-       //setInterval(this.newnode, 5000);
-        // store intervalId in the state so it can be accessed later:
-        
-     }
-     // de function el delete eli btms7 el node eli heya feha
-     Dlt=(e)=>{
-         //el mafrod en array.splice btmsa7 element fee el array mo3ayan b el index bta3o
-         // el index el mafrod y2l b wa7ed *i'm supposing*
-         this.setState((prevState)=> { 
-             return{
-                 
-                 nodes : prevState.nodes.splice(this.state.nodes.indexOf(prevState.index),1),
-                 index : prevState.index - 1  ,
-                
-            }
-        })
-     }
-     //to edit the node
-     Edt=(e)=>{
-        
-        this.setState((prevState)=> { 
-            console.log (this.state.nodes.length);
-            console.log(" ");
-            console.log(this.state.index);
-            return{
-                
-                //nodes : prevState.nodes.concat(<p>ayayayayaa</p>),
-                
-            }
-        })
+            //array of items in to do list
+            items: [],
+            textInTexbox : "",
+            addItem : this.addItem.bind(this),
+            deleteItem : this.deleteItem.bind(this),
+            editItem : this.editItem.bind(this),
+            //index variable to give ids for some elements
+            index : 1,
+            //if edit_bool is any aother value else 0 then i'm editing now - if = 0 then i'm adding
+            edit_bool : 0,
+            //button text
+            add_Update : "Add",
 
-        
+        }
+     
     }
-    //i am creating a new node to append it to the to do list
-    newnode=(e)=>{    
-            //i retuen the array of nodes + a new node in it 
-            // a node consisit of 2 buttons and a paragraph inside a div
-        this.setState((prevState)=> { 
-            return{
-                index : prevState.index +1  ,
-                nodes : prevState.nodes.concat(<div><p>index = {this.index}</p>
-                 <button onClick = {this.Dlt}>Delete</button>
-                 <button onClick = {this.Edt}>Edit</button>
-                 </div>)
-                
-            }
-        })
-        //alert(this.state.nodes);
-        // document.getElementById('textbox').nodeValue="";
-        //e.preventDefault();
+  
+    deleteItem=(e)=>{
+       e.target.parentNode.remove();
     }
-    //i am rendering the array which contain all the nodes
-    render(){
-        return(
-            <div>
-                {this.state.nodes}
+    editItem=(e)=>{
+
+        document.getElementById("textbox").value=e.target.previousSibling.previousSibling.innerHTML;
+        this.setState({edit_bool:e.target.previousSibling.previousSibling.id,
+        add_Update : "Update"
+        });
+    }
+    addItem=()=>{
+        if(!this.state.edit_bool){
+            this.state.textInTexbox = document.getElementById("textbox").value;
+            this.state.textInTexbox.trim();
+
+            if(this.state.textInTexbox)
+            this.setState((prevstate)=>({items : prevstate.items.concat(
+            <div  id = {this.state.index}>
+                <p id={"p"+this.state.index}>{this.state.textInTexbox}</p>
+                <button onClick={this.deleteItem}>Delete</button>
+                <button onClick={this.editItem}>Edit</button>
+
             </div>
-        );
+            )}));
+            this.setState((prevstate)=>({index : prevstate.index+1}));
+
+            document.getElementById("textbox").value="";
+        }
+        else{
+            this.state.textInTexbox = document.getElementById("textbox").value;
+            this.state.textInTexbox.trim();
+
+            if(this.state.textInTexbox)
+            document.getElementById(this.state.edit_bool).innerHTML=this.state.textInTexbox;
+            document.getElementById("textbox").value="";
+            this.setState({edit_bool:0, add_Update:"Add"});
+        }
+
+    }
+    
+   
+    render()
+    {
+      return(
+        <div class="toDoListHead">
+          <div class = "" >
+              <h1>To Do List</h1>
+                <input type="text" id = "textbox"></input>
+                <button onClick={this.addItem} >{this.state.add_Update}</button>
+          </div>
+          <div class ="">
+               {this.state.items}
+          </div>
+        </div>
+      );
     }
 }
 
-export {List, Todolist};
+
+export default Todolist;

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './sign-up-form.css';
 import Start from './sign-up-form';
-import {Todolist} from './list'
+import Todolist from './list'
 
 class Login extends React.Component{
     
@@ -32,7 +32,7 @@ class Login extends React.Component{
                 <input type="submit" value="submit" onClick={this.moveToList}></input>
                  
                 <br></br><br></br><br></br>
-                 <label>Don't have an account ?</label> <a onClick={this.moveToSignUpForm}>Sing up</a>
+                 <label>Don't have an account ?</label> <a onClick={this.moveToSignUpForm}>Sign up</a>
             </form>
 
         </div>
